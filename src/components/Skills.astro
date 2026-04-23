@@ -3,16 +3,20 @@ import Section from "./Section.astro";
 
 const groups = [
   {
-    name: "Comfortable with",
-    items: ["Python", "Java", "TypeScript", "SQL", "Git", "Linux"],
+    name: "Languages",
+    items: ["C++", "GDScript", "Python", "Java"],
   },
   {
-    name: "Have shipped with",
-    items: ["React", "Node.js", "PostgreSQL", "Docker"],
+    name: "Tools",
+    items: ["Godot", "Aseprite", "Git", "Linux"],
   },
   {
-    name: "Curious about",
-    items: ["Rust", "Distributed systems", "ML infra"],
+    name: "Practicing",
+    items: [
+      "Shader programming",
+      "Real-time physics",
+      "Procedural generation",
+    ],
   },
 ];
 ---
@@ -34,10 +38,4 @@ const groups = [
       ))
     }
   </div>
-  <p
-    class="mt-10 text-sm text-[color:var(--color-muted)]"
-  >
-    Placeholder lists — edit <code>src/components/Skills.astro</code> to make
-    them yours.
-  </p>
 </Section>
