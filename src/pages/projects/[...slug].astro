@@ -1,0 +1,155 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Nav from "../../components/Nav.astro";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects", ({ data }) => !data.draft);
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { data } = project;
+const { Content } = await render(project);
+const year = data.date.getFullYear();
+const hasGallery = data.images.length > 0 || data.videos.length > 0;
+---
+
+<Layout title={`${data.title} — Dragosh Vatamanu`} description={data.summary}>
+  <Nav />
+  <main class="px-6 py-20 sm:px-10 sm:py-28">
+    <div class="frame mx-auto max-w-4xl">
+      <span class="frame-tr" aria-hidden="true"></span>
+      <span class="frame-bl" aria-hidden="true"></span>
+      <span class="frame-top" aria-hidden="true"></span>
+      <span class="frame-bottom" aria-hidden="true"></span>
+
+      <a
+        href="/#projects"
+        class="link-underline inline-flex items-center gap-1 font-mono text-xs tracking-wider text-[color:var(--color-muted)] hover:text-[color:var(--color-ink)]"
+      >
+        ← back to projects
+      </a>
+
+      <header class="mt-8 mb-8 flex flex-col gap-3">
+        <span
+          class="font-mono text-xs tracking-wider text-[color:var(--color-muted)]"
+        >
+          ~/projects/{project.id}
+        </span>
+        <h1
+          data-split
+          class="font-[family-name:var(--font-display)] text-4xl leading-tight sm:text-6xl"
+        >
+          {data.title}
+        </h1>
+        <div
+          class="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-xs text-[color:var(--color-muted)]"
+        >
+          <span>{year}</span>
+          {
+            data.featured && (
+              <span class="text-[color:var(--color-accent)]">★ featured</span>
+            )
+          }
+        </div>
+        <div class="mt-2 flex flex-wrap gap-1.5">
+          {
+            data.tech.map((t) => (
+              <span class="rounded-full border border-[color:var(--color-rule)] px-2.5 py-0.5 font-mono text-[11px] text-[color:var(--color-muted)]">
+                {t}
+              </span>
+            ))
+          }
+        </div>
+      </header>
+
+      <p
+        class="max-w-2xl text-lg leading-relaxed text-[color:var(--color-ink)]/85"
+      >
+        {data.summary}
+      </p>
+
+      {
+        (data.link || data.repo) && (
+          <div class="mt-6 flex flex-wrap gap-3 text-sm">
+            {data.link && (
+              <a
+                href={data.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 rounded-full bg-[color:var(--color-ink)] px-5 py-2.5 text-[color:var(--color-paper)] transition hover:opacity-90"
+              >
+                Play live <span aria-hidden="true">↗</span>
+              </a>
+            )}
+            {data.repo && (
+              <a
+                href={data.repo}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 rounded-full border border-[color:var(--color-rule)] px-5 py-2.5 transition hover:border-[color:var(--color-ink)]"
+              >
+                Source ↗
+              </a>
+            )}
+          </div>
+        )
+      }
+
+      <div class="prose-body mt-10 text-[color:var(--color-ink)]/85">
+        <Content />
+      </div>
+
+      {
+        hasGallery && (
+          <div class="mt-16 grid gap-6 sm:grid-cols-2">
+            <div class="space-y-4">
+              <h2 class="font-mono text-xs tracking-wider text-[color:var(--color-muted)]">
+                ~/images
+              </h2>
+              {data.images.length === 0 ? (
+                <p class="font-mono text-xs text-[color:var(--color-muted)]">
+                  no images yet
+                </p>
+              ) : (
+                data.images.map((src) => (
+                  <img
+                    src={src}
+                    alt=""
+                    loading="lazy"
+                    class="w-full rounded-sm border border-[color:var(--color-rule)]"
+                  />
+                ))
+              )}
+            </div>
+            <div class="space-y-4">
+              <h2 class="font-mono text-xs tracking-wider text-[color:var(--color-muted)]">
+                ~/videos
+              </h2>
+              {data.videos.length === 0 ? (
+                <p class="font-mono text-xs text-[color:var(--color-muted)]">
+                  no videos yet
+                </p>
+              ) : (
+                data.videos.map((src) => (
+                  <video
+                    src={src}
+                    autoplay
+                    loop
+                    muted
+                    playsinline
+                    class="w-full rounded-sm border border-[color:var(--color-rule)]"
+                  />
+                ))
+              )}
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </main>
+</Layout>

@@ -15,8 +15,8 @@ const projects = (await getCollection("projects", ({ data }) => !data.draft))
       </p>
     ) : (
       <div>
-        {projects.map(({ data }) => (
-          <ProjectCard {...data} />
+        {projects.map((project) => (
+          <ProjectCard {...project.data} slug={project.id} />
         ))}
       </div>
     )
