@@ -5,12 +5,15 @@
 <section class="px-6 pt-20 pb-24 sm:px-10 sm:pt-28 sm:pb-32">
   <div class="mx-auto max-w-4xl">
     <h1
+      data-split
       class="font-[family-name:var(--font-display)] text-5xl leading-[1.05] tracking-tight sm:text-7xl"
     >
       Hi, I'm <em class="text-[color:var(--color-accent)]">Dragosh</em> — a
-      programmer with a strong focus on games.
+      programmer with a strong focus on games.<span class="caret" aria-hidden="true"></span>
     </h1>
     <p
+      data-reveal
+      style="--reveal-delay: 400ms"
       class="mt-8 max-w-2xl text-lg leading-relaxed text-[color:var(--color-muted)] sm:text-xl"
     >
       Final-year Computer Science student at
@@ -22,7 +25,7 @@
       role as a software engineer — ideally in game development, at a studio large
       or small, but open to broader tech roles.
     </p>
-    <div class="mt-10 flex flex-wrap gap-3 text-sm">
+    <div data-reveal style="--reveal-delay: 550ms" class="mt-10 flex flex-wrap gap-3 text-sm">
       <a
         href="#contact"
         class="inline-flex items-center gap-2 rounded-full bg-[color:var(--color-ink)] px-5 py-2.5 text-[color:var(--color-paper)] transition hover:opacity-90"

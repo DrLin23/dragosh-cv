@@ -7,7 +7,7 @@ const projects = (await getCollection("projects", ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
-<Section id="projects" eyebrow="Projects" title="Things I've built">
+<Section id="projects" eyebrow="projects" title="Things I've built">
   {
     projects.length === 0 ? (
       <p class="text-[color:var(--color-muted)]">

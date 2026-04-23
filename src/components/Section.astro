@@ -8,24 +8,36 @@ interface Props {
 const { id, eyebrow, title } = Astro.props;
 ---
 
-<section id={id} class="border-b border-[color:var(--color-rule)] px-6 py-20 sm:px-10 sm:py-28">
-  <div class="mx-auto max-w-4xl">
+<section id={id} class="px-6 py-20 sm:px-10 sm:py-28">
+  <div class="frame mx-auto max-w-4xl">
+    <span class="frame-tr" aria-hidden="true"></span>
+    <span class="frame-bl" aria-hidden="true"></span>
+    <span class="frame-top" aria-hidden="true"></span>
+    <span class="frame-bottom" aria-hidden="true"></span>
     {
       (eyebrow || title) && (
         <header class="mb-10 flex flex-col gap-2">
           {eyebrow && (
-            <span class="font-mono text-xs uppercase tracking-widest text-[color:var(--color-muted)]">
-              {eyebrow}
+            <span
+              data-reveal
+              class="font-mono text-xs tracking-wider text-[color:var(--color-muted)]"
+            >
+              ~/{eyebrow}
             </span>
           )}
           {title && (
-            <h2 class="font-[family-name:var(--font-display)] text-4xl leading-tight sm:text-5xl">
+            <h2
+              data-split
+              class="font-[family-name:var(--font-display)] text-4xl leading-tight sm:text-5xl"
+            >
               {title}
             </h2>
           )}
         </header>
       )
     }
-    <slot />
+    <div data-reveal style="--reveal-delay: 250ms">
+      <slot />
+    </div>
   </div>
 </section>

@@ -15,7 +15,7 @@ const year = date.getFullYear();
 
 <article
   class:list={[
-    "group grid gap-4 py-8 sm:grid-cols-[1fr_2fr]",
+    "project-card group grid gap-4 py-8 sm:grid-cols-[1fr_2fr]",
     "border-t border-[color:var(--color-rule)] first:border-t-0",
   ]}
 >
@@ -33,7 +33,7 @@ const year = date.getFullYear();
     </div>
   </div>
   <div>
-    <h3 class="font-[family-name:var(--font-display)] text-2xl leading-snug">
+    <h3 class="project-title font-[family-name:var(--font-display)] text-2xl leading-snug">
       {title}
     </h3>
     <p class="mt-2 text-[color:var(--color-ink)]/80">{summary}</p>
