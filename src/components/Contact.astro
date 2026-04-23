@@ -1,0 +1,41 @@
+---
+import Section from "./Section.astro";
+
+const links = [
+  { label: "Email", href: "mailto:dragos23vatamanu@gmail.com", hint: "dragos23vatamanu@gmail.com" },
+  { label: "GitHub", href: "https://github.com/", hint: "[your handle]" },
+  { label: "LinkedIn", href: "https://linkedin.com/in/", hint: "[your handle]" },
+  { label: "CV (PDF)", href: "/cv.pdf", hint: "Download" },
+];
+---
+
+<Section id="contact" eyebrow="Contact" title="Say hi">
+  <p class="mb-10 max-w-2xl text-lg leading-relaxed text-[color:var(--color-ink)]/80">
+    Easiest way to reach me is email. I'm especially keen to hear from teams
+    working on <em>[what you want to work on]</em>, but don't let that stop you.
+  </p>
+  <ul class="divide-y divide-[color:var(--color-rule)] border-y border-[color:var(--color-rule)]">
+    {
+      links.map((l) => (
+        <li>
+          <a
+            href={l.href}
+            class="group flex items-center justify-between py-5 transition hover:text-[color:var(--color-accent)]"
+          >
+            <span class="font-[family-name:var(--font-display)] text-2xl">
+              {l.label}
+            </span>
+            <span class="flex items-center gap-3 font-mono text-sm text-[color:var(--color-muted)] group-hover:text-[color:var(--color-accent)]">
+              {l.hint}
+              <span aria-hidden="true">↗</span>
+            </span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+  <footer class="mt-16 flex flex-wrap items-center justify-between gap-2 font-mono text-xs uppercase tracking-widest text-[color:var(--color-muted)]">
+    <span>© {new Date().getFullYear()} Dragosh Vatamanu</span>
+    <span>Built with Astro · Hosted on Cloudflare Pages</span>
+  </footer>
+</Section>

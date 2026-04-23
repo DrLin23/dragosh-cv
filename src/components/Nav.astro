@@ -1,0 +1,40 @@
+---
+// Small top bar: name, location + live Amsterdam time, availability.
+---
+
+<nav
+  class="flex flex-wrap items-center justify-between gap-4 border-b border-[color:var(--color-rule)] px-6 py-5 text-sm sm:px-10"
+>
+  <div class="flex flex-wrap items-center gap-x-4 gap-y-1">
+    <span class="font-medium">Dragosh Vatamanu</span>
+    <span class="text-[color:var(--color-muted)]">
+      Amsterdam · <span id="clock" class="font-mono tabular-nums">—:—</span>
+    </span>
+    <span
+      class="inline-flex items-center gap-1.5 text-[color:var(--color-muted)]"
+    >
+      <span class="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+      Available from Summer 2026
+    </span>
+  </div>
+  <div class="flex items-center gap-5 text-[color:var(--color-muted)]">
+    <a href="#projects" class="hover:text-[color:var(--color-ink)]">Projects</a>
+    <a href="#contact" class="hover:text-[color:var(--color-ink)]">Contact</a>
+  </div>
+</nav>
+
+<script is:inline>
+  (function () {
+    var el = document.getElementById("clock");
+    if (!el) return;
+    function tick() {
+      el.textContent = new Intl.DateTimeFormat("en-GB", {
+        hour: "2-digit",
+        minute: "2-digit",
+        timeZone: "Europe/Amsterdam",
+      }).format(new Date());
+    }
+    tick();
+    setInterval(tick, 30000);
+  })();
+</script>

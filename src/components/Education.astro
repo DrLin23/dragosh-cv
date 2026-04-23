@@ -1,0 +1,46 @@
+---
+import Section from "./Section.astro";
+
+const degrees = [
+  {
+    school: "Vrije Universiteit Amsterdam",
+    program: "BSc Computer Science",
+    dates: "2023 — 2026 (expected)",
+    blurb:
+      "Final-year student. Coursework spans algorithms, systems, networks, software engineering, and AI. Thesis topic: [to fill in].",
+    highlights: [
+      "[Course or project highlight #1]",
+      "[Course or project highlight #2]",
+      "[Course or project highlight #3]",
+    ],
+  },
+];
+---
+
+<Section id="education" eyebrow="Education" title="Where I learned things">
+  <ol class="divide-y divide-[color:var(--color-rule)]">
+    {
+      degrees.map((d) => (
+        <li class="grid gap-4 py-8 first:pt-0 last:pb-0 sm:grid-cols-[1fr_2fr]">
+          <div>
+            <p class="font-medium">{d.school}</p>
+            <p class="font-mono text-xs uppercase tracking-widest text-[color:var(--color-muted)]">
+              {d.dates}
+            </p>
+          </div>
+          <div class="space-y-4">
+            <p class="font-[family-name:var(--font-display)] text-2xl leading-snug">
+              {d.program}
+            </p>
+            <p class="text-[color:var(--color-ink)]/80">{d.blurb}</p>
+            <ul class="list-inside list-[square] space-y-1 text-[color:var(--color-muted)] marker:text-[color:var(--color-accent)]">
+              {d.highlights.map((h) => (
+                <li>{h}</li>
+              ))}
+            </ul>
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+</Section>

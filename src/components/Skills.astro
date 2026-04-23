@@ -1,0 +1,43 @@
+---
+import Section from "./Section.astro";
+
+const groups = [
+  {
+    name: "Comfortable with",
+    items: ["Python", "Java", "TypeScript", "SQL", "Git", "Linux"],
+  },
+  {
+    name: "Have shipped with",
+    items: ["React", "Node.js", "PostgreSQL", "Docker"],
+  },
+  {
+    name: "Curious about",
+    items: ["Rust", "Distributed systems", "ML infra"],
+  },
+];
+---
+
+<Section id="skills" eyebrow="Skills" title="What I reach for">
+  <div class="grid gap-10 sm:grid-cols-3">
+    {
+      groups.map((g) => (
+        <div>
+          <p class="mb-3 font-mono text-xs uppercase tracking-widest text-[color:var(--color-muted)]">
+            {g.name}
+          </p>
+          <ul class="space-y-1.5 font-[family-name:var(--font-display)] text-xl">
+            {g.items.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+  <p
+    class="mt-10 text-sm text-[color:var(--color-muted)]"
+  >
+    Placeholder lists — edit <code>src/components/Skills.astro</code> to make
+    them yours.
+  </p>
+</Section>

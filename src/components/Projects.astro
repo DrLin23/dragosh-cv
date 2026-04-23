@@ -1,0 +1,27 @@
+---
+import { getCollection } from "astro:content";
+import Section from "./Section.astro";
+import ProjectCard from "./ProjectCard.astro";
+
+const projects = (await getCollection("projects", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<Section id="projects" eyebrow="Projects" title="Things I've built">
+  {
+    projects.length === 0 ? (
+      <p class="text-[color:var(--color-muted)]">
+        Nothing to show here yet — more in the oven. Come back soon.
+      </p>
+    ) : (
+      <div>
+        {projects.map(({ data }) => (
+          <ProjectCard {...data} />
+        ))}
+      </div>
+    )
+  }
+  <p class="mt-10 font-mono text-xs uppercase tracking-widest text-[color:var(--color-muted)]">
+    To add a project, drop a .md file in <code>src/content/projects/</code>.
+  </p>
+</Section>

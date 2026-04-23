@@ -1,0 +1,67 @@
+---
+interface Props {
+  title: string;
+  summary: string;
+  date: Date;
+  tech: string[];
+  link?: string;
+  repo?: string;
+  featured?: boolean;
+}
+
+const { title, summary, date, tech, link, repo, featured } = Astro.props;
+const year = date.getFullYear();
+---
+
+<article
+  class:list={[
+    "group grid gap-4 py-8 sm:grid-cols-[1fr_2fr]",
+    "border-t border-[color:var(--color-rule)] first:border-t-0",
+  ]}
+>
+  <div class="flex flex-col gap-2">
+    <span class="font-mono text-xs uppercase tracking-widest text-[color:var(--color-muted)]">
+      {year}
+      {featured && <span class="ml-2 text-[color:var(--color-accent)]">★ featured</span>}
+    </span>
+    <div class="flex flex-wrap gap-1.5">
+      {tech.map((t) => (
+        <span class="rounded-full border border-[color:var(--color-rule)] px-2.5 py-0.5 font-mono text-[11px] text-[color:var(--color-muted)]">
+          {t}
+        </span>
+      ))}
+    </div>
+  </div>
+  <div>
+    <h3 class="font-[family-name:var(--font-display)] text-2xl leading-snug">
+      {title}
+    </h3>
+    <p class="mt-2 text-[color:var(--color-ink)]/80">{summary}</p>
+    {
+      (link || repo) && (
+        <div class="mt-4 flex gap-4 text-sm">
+          {link && (
+            <a
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="underline decoration-[color:var(--color-accent)] decoration-2 underline-offset-4 hover:text-[color:var(--color-accent)]"
+            >
+              Live ↗
+            </a>
+          )}
+          {repo && (
+            <a
+              href={repo}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="underline decoration-[color:var(--color-rule)] decoration-2 underline-offset-4 hover:decoration-[color:var(--color-ink)]"
+            >
+              Code ↗
+            </a>
+          )}
+        </div>
+      )
+    }
+  </div>
+</article>
