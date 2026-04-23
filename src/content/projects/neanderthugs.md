@@ -5,9 +5,9 @@ date: 2026-03-30
 tech: ["Godot", "GDScript", "Aseprite", "Audacity"]
 link: "https://lotcam.itch.io/neanderthugs"
 featured: true
-hero: "/projects/neanderthugs/placeholder.svg"
+hero: "/projects/neanderthugs/n-dialogue.png"
 images: []
-videos: []
+videos: [n-recording-trimmed.mp4]
 ---
 
 Built with Andres Lot and Marcel Niedzielski for Mini Jam 207 under the "Primal"
