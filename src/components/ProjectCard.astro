@@ -8,16 +8,21 @@ interface Props {
   link?: string;
   repo?: string;
   featured?: boolean;
+  hero?: string;
 }
 
-const { slug, title, summary, date, tech, link, repo, featured } = Astro.props;
+const { slug, title, summary, date, tech, link, repo, featured, hero } =
+  Astro.props;
 const year = date.getFullYear();
 const detailHref = `/projects/${slug}`;
 ---
 
 <article
   class:list={[
-    "project-card group grid gap-4 py-8 sm:grid-cols-[1fr_2fr]",
+    "project-card group grid gap-4 gap-x-6 py-8",
+    hero
+      ? "sm:grid-cols-[1fr_2fr] lg:grid-cols-[1fr_2fr_1.6fr]"
+      : "sm:grid-cols-[1fr_2fr]",
     "border-t border-[color:var(--color-rule)] first:border-t-0",
   ]}
 >
@@ -70,4 +75,20 @@ const detailHref = `/projects/${slug}`;
       )}
     </div>
   </div>
+  {
+    hero && (
+      <a
+        href={detailHref}
+        aria-label={`Open ${title} project page`}
+        class="block overflow-hidden rounded-sm border border-[color:var(--color-rule)] sm:col-span-2 lg:col-span-1 lg:row-span-2 lg:self-start"
+      >
+        <img
+          src={hero}
+          alt=""
+          loading="lazy"
+          class="aspect-video w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+        />
+      </a>
+    )
+  }
 </article>

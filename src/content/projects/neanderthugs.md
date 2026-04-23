@@ -5,6 +5,7 @@ date: 2026-03-30
 tech: ["Godot", "GDScript", "Aseprite", "Audacity"]
 link: "https://lotcam.itch.io/neanderthugs"
 featured: true
+hero: "/projects/neanderthugs/placeholder.svg"
 images: []
 videos: []
 ---
